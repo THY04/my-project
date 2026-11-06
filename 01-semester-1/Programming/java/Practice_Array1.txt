@@ -1,0 +1,73 @@
+How many students=2
+student 1:
+java=60
+o1=100
+Mis=42
+student 2:
+java=80
+o1=90
+Mis=82
+----------------------------------
+Student	Java	O1	MIS	Fail
+1	60	100	42	1
+2	80	90	82	0
+
+
+
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+
+        Scanner input = new Scanner(System.in);
+
+        System.out.print("How many students = ");
+        int n = input.nextInt();
+
+        // 3 subjects: Java, O1, MIS
+        int[][] score = new int[n][3];
+
+        // Input student scores
+        for (int row = 0; row < n; row++) {
+
+            System.out.println("Student " + (row + 1) + ":");
+
+            System.out.print("Java = ");
+            score[row][0] = input.nextInt();
+
+            System.out.print("O1 = ");
+            score[row][1] = input.nextInt();
+
+            System.out.print("MIS = ");
+            score[row][2] = input.nextInt();
+        }
+
+        // Display table header
+        System.out.println("----------------------------------");
+        System.out.println("Student\tJava\tO1\tMIS\tFail");
+
+        // Calculate failed subjects
+        for (int row = 0; row < n; row++) {
+
+            int fail = 0;
+
+            for (int col = 0; col < 3; col++) {
+
+                if (score[row][col] < 50) {
+                    fail++;
+                }
+            }
+
+            // Display student information
+            System.out.println(
+                (row + 1) + "\t" +
+                score[row][0] + "\t" +
+                score[row][1] + "\t" +
+                score[row][2] + "\t" +
+                fail
+            );
+        }
+
+        input.close();
+    }
+}
